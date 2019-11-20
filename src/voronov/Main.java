@@ -56,7 +56,7 @@ public class Main {
         student3.setSubjectMark(4, 70);
         student3.setSubjectMark(5, 83);
 
-        Students students = new Students(0);
+        Students students = new Students();
 
         students.addStudent(student);
         students.addStudent(student1);

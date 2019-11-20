@@ -1,51 +1,39 @@
 package voronov;
 
+import java.util.ArrayList;
+
 public class Students {
 
-    private Student students[];
+    private ArrayList<Student> students;
 
-    public Students(int count) {
-        this.students = new Student[count];
+    public Students() {
+        this.students = new ArrayList<>();
     }
 
-    public void addStudent(Student student, int position) {
+    public void addStudent(Student student)
+    {
         try {
-            students[position] = student;
-        } catch (Exception e) {
-            Student tempStudents[] = new Student[position];
-            for (int i = 0; i < students.length; i++) {
-                tempStudents[i] = students[i];
-            }
-            tempStudents[position - 1] = student;
-            students = tempStudents;
+            students.add(student);
         }
-    }
-
-    public void addStudent(Student student) {
-        Student tempStudents[] = new Student[students.length + 1];
-        for (int i = 0; i < students.length; i++) {
-            tempStudents[i] = students[i];
+        catch (Exception e)
+        {
+            System.out.println("Ошибка добавления студента");
         }
-        tempStudents[tempStudents.length - 1] = student;
-        students = tempStudents;
     }
 
     public void removeStudent(int position) {
         try {
-            Student tempStudents[] = new Student[students.length - 1];
-            for (int i = 0; i < position - 1; i++)
-                tempStudents[i] = students[i];
-            for (int i = position - 1; i < students.length - 1; i++)
-                tempStudents[i] = students[i + 1];
-            students = tempStudents;
-        } catch (Exception e) {
-            System.out.println("Ошибка удаления!");
+            students.remove(position);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Ошибка добавления студента");
         }
     }
 
     public boolean isStudentsEmpty() {
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] != null) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i) != null) {
                 return false;
             }
         }
@@ -55,9 +43,9 @@ public class Students {
     public void getExcellentStudents()
     {
         int excellentCounter = 0;
-        for(int i = 0; i < students.length; i++)
+        for(int i = 0; i < students.size(); i++)
         {
-            if (students[i].isExcellent())
+            if (students.get(i).isExcellent())
             excellentCounter += 1;
         }
         if(excellentCounter == 0)
@@ -67,14 +55,14 @@ public class Students {
     public void  getDStudents()
     {
         int DCounter = 0;
-        for(int i = 0; i < students.length; i++)
+        for(int i = 0; i < students.size(); i++)
         {
             try {
-                if (students[i].isHaveD()) {
+                if (students.get(i).isHaveD()) {
                     DCounter += 1;
-                    System.out.println(students[i].getName() + " | " + students[i].getClassNum() + " курс | Факультет: " +
-                            students[i].getFaculty() + " | Имеет двойки!");
-                    students[i].showD();
+                    System.out.println(students.get(i).getName() + " | " + students.get(i).getClassNum() + " курс | Факультет: " +
+                            students.get(i).getFaculty() + " | Имеет двойки!");
+                    students.get(i).showD();
                     System.out.println("----------------------------------------------------------------------------------------------------"); //x100 "-"
                 }
             }
@@ -87,11 +75,11 @@ public class Students {
     public void removeIfD()
     {
         int deletedCounter = 0;
-        for(int i = 0; i < students.length; i++)
-            if(students[i].isHaveD())
+        for(int i = 0; i < students.size(); i++)
+            if(students.get(i).isHaveD())
             {
                 deletedCounter += 1;
-                removeStudent(i + 1);
+                students.remove(i);
             }
         System.out.println("Удалено студентов: " + deletedCounter);
     }
@@ -99,10 +87,10 @@ public class Students {
     public void getInfo() {
         if (!isStudentsEmpty())
         {
-            for (int i = 0; i < students.length; i++) {
+            for (int i = 0; i < students.size(); i++) {
                 try {
                     System.out.print("(" + (i+1) + ") ");
-                    students[i].getInfo();
+                    students.get(i).getInfo();
                 }
                 catch (Exception e) {
                     System.out.println("Students: Слот " + (i + 1) + " пуст!");

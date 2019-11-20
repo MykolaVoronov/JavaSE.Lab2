@@ -1,11 +1,13 @@
 package voronov;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Student {
 
     private String name, faculty, classNum, recordID;
-    private Subject subjects[];
+    private ArrayList<Subject> subjects;
+    private static final int SUBJECTS_SIZE = 5;
 
     public Student(String name, String faculty, String classNum, String recordID)
     {
@@ -13,7 +15,7 @@ public class Student {
         this.recordID = recordID;
         this.faculty = faculty;
         this.classNum = classNum;
-        this.subjects = new  Subject[5];
+        this.subjects = new ArrayList<>(SUBJECTS_SIZE);
     }
 
     public String getName() {
@@ -30,32 +32,30 @@ public class Student {
 
     public void addSubject(Subject subject)
     {
-        for(int i = 0; i < 5; i++)
+        try {
+            subjects.add(subject);
+        }
+        catch (Exception e)
         {
-            if(subjects[i]==null)
-            {
-                subjects[i] = subject;
-                break;
-            }
-            if(i == 4 && subjects[i] != null)
-                System.out.println("Список предметов полон!");
+            System.out.println("Ошибка добавления предмета!");
         }
     }
 
     public void removeSubject(int position)
     {
         try {
-            subjects[position - 1] = null;
+            subjects.remove(position);
         }
         catch (Exception e) {
             System.out.println("Ошибка удаления предмета!");
         }
     }
+
     public boolean isSubjectsEmpty()
     {
-        for(int i = 0; i < subjects.length; i++)
+        for(int i = 0; i < subjects.size(); i++)
         {
-            if(subjects[i] != null)
+            if(subjects.get(i) != null)
             {
                 return false;
             }
@@ -63,18 +63,17 @@ public class Student {
         return true;
     }
 
-
     public void  fillAllSubjectsManually()
     {
         Scanner read = new Scanner(System.in);
         for (int i = 0; i < 5; i++)
         {
             System.out.println("Введите название предмета");
-            subjects[i].setName(read.next());
-            System.out.println("Введите ФИО преподавателя по предмету <" + subjects[i].getName() + ">");
-            subjects[i].setTeacherName(read.next());
-            System.out.println("Введите оценку по предмету <" + subjects[i].getName() + ">");
-            subjects[i].setMark(Integer.parseInt(read.next()));
+            subjects.get(i).setName(read.next());
+            System.out.println("Введите ФИО преподавателя по предмету <" + subjects.get(i).getName() + ">");
+            subjects.get(i).setTeacherName(read.next());
+            System.out.println("Введите оценку по предмету <" + subjects.get(i).getName() + ">");
+            subjects.get(i).setMark(Integer.parseInt(read.next()));
             read.close();
         }
     }
@@ -82,40 +81,40 @@ public class Student {
     {
         Scanner read = new Scanner(System.in);
         System.out.println("Введите название предмета");
-        subjects[position-1].setName(read.next());
+        subjects.get(position-1).setName(read.next());
         read.close();
     }
 
     public void setSubjectName(int position, String name)
     {
-        subjects[position-1].setName(name);
+        subjects.get(position-1).setName(name);
     }
 
     public void setSubjectTeacherName(int position)
     {
         Scanner read = new Scanner(System.in);
-        System.out.println("Введите ФИО преподавателя по предмету <" + subjects[position-1].getName() + ">");
-        subjects[position-1].setTeacherName(read.next());
+        System.out.println("Введите ФИО преподавателя по предмету <" + subjects.get(position-1).getName() + ">");
+        subjects.get(position-1).setTeacherName(read.next());
         read.close();
     }
 
     public void setSubjectTeacherName(int position, String name)
     {
-        subjects[position-1].setTeacherName(name);
+        subjects.get(position-1).setTeacherName(name);
     }
 
     public void setSubjectMark(int position)
     {
         Scanner read = new Scanner(System.in);
-        System.out.println("Введите оценку по предмету <" + subjects[position-1].getName() + ">" );
-        subjects[position-1].setMark(read.nextInt());
+        System.out.println("Введите оценку по предмету <" + subjects.get(position-1).getName() + ">" );
+        subjects.get(position-1).setMark(read.nextInt());
         read.close();
     }
 
     public void setSubjectMark(int position, int mark)
     {
         try {
-            subjects[position - 1].setMark(mark);
+            subjects.get(position-1).setMark(mark);
         }
         catch (Exception e)
         {
@@ -131,7 +130,7 @@ public class Student {
             for (int i = 0; i < 5; i++)
             {
                 try {
-                    sum += subjects[i].getMark();
+                    sum += subjects.get(i).getMark();
                 }
                 catch (Exception e)
                 {
@@ -159,8 +158,8 @@ public class Student {
     {
         for (int i = 0; i < 5; i++)
         {
-            if (subjects[i].getMark() < 60)
-                subjects[i].getInfo();
+            if (subjects.get(i).getMark() < 60)
+                subjects.get(i).getInfo();
         }
     }
 
@@ -169,7 +168,7 @@ public class Student {
         for (int i = 0; i < 5; i++)
         {
             try {
-                if (subjects[i].getMark() < 60)
+                if (subjects.get(i).getMark() < 60)
                     return true;
             }
             catch (Exception e){}
@@ -183,7 +182,7 @@ public class Student {
         System.out.println();
             for (int i = 0; i < 5; i++) {
                 try{
-                System.out.println((i+1) + ". Предмет: " + subjects[i].getName() + " | Преподаватель: " + subjects[i].getTeacherName() + " | Оценка: " + subjects[i].getMark() + " |");
+                System.out.println((i+1) + ". Предмет: " + subjects.get(i).getName() + " | Преподаватель: " + subjects.get(i).getTeacherName() + " | Оценка: " + subjects.get(i).getMark() + " |");
                 }
                 catch (Exception e)
                 {
