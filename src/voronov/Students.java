@@ -80,8 +80,44 @@ public class Students {
             {
                 deletedCounter += 1;
                 students.remove(i);
+                i--;
             }
         System.out.println("Удалено студентов: " + deletedCounter);
+    }
+
+    public void searchSubjectMoreD()
+    {
+        try {
+            ArrayList<Subject> checkerList = new ArrayList<>();
+            int subjectIndex = 0, maxCountOfRepeat = 0;
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).isHaveD())
+                    for (int j = 0; j < 5; j++)
+                        checkerList.add(students.get(i).getSubject(j));
+            }
+            for (int i = 0; i < checkerList.size(); i++) {
+                if (checkerList.get(i).getMark() > 60 || checkerList.get(i).getName() == "") {
+                    checkerList.remove(i);
+                    if (checkerList.size() != 0) i--;
+                }
+            }
+            ArrayList<Subject> tempCheckerList = checkerList;
+            for (int i = 0; i < checkerList.size(); i++) {
+                int countOfRepeat = 0;
+                for (int j = 0; j < checkerList.size(); j++) {
+                    if (checkerList.get(i).getName() == tempCheckerList.get(j).getName())
+                        countOfRepeat += 1;
+                    if (countOfRepeat > maxCountOfRepeat)
+                        maxCountOfRepeat = countOfRepeat;
+                    subjectIndex = i;
+                }
+            }
+            System.out.println("Наибольшее число студентов получили двойки по предмету: " + checkerList.get(subjectIndex).getName());
+        }
+        catch (Exception e)
+        {
+            System.out.println("Двоек нету");
+        }
     }
 
     public void getInfo() {

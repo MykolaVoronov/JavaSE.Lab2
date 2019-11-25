@@ -41,6 +41,17 @@ public class Student {
         }
     }
 
+    public Subject getSubject(int position)
+    {
+        try {
+            return subjects.get(position);
+        }
+        catch (Exception e)
+        {
+            return new Subject("","");
+        }
+    }
+
     public void removeSubject(int position)
     {
         try {
@@ -77,6 +88,7 @@ public class Student {
             read.close();
         }
     }
+
     public void setSubjectName(int position)
     {
         Scanner read = new Scanner(System.in);
@@ -190,6 +202,5 @@ public class Student {
                 }
             }
         System.out.println("----------------------------------------------------------------------------------------------------"); //x100 "-"
-
     }
 }

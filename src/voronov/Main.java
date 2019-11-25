@@ -16,7 +16,7 @@ public class Main {
         student.addSubject(new Subject("Физика","Новаков Г. О."));
         student.addSubject(new Subject("Химия","Сербенюк И. В."));
         student.addSubject(new Subject("Информатика","Фарионов А. А."));
-        student.setSubjectMark(1,60);
+        student.setSubjectMark(1,90);
         student.setSubjectMark(2, 75);
         student.setSubjectMark(3,80);
         student.setSubjectMark(4,59);
@@ -30,7 +30,7 @@ public class Main {
         student1.addSubject(new Subject("Информатика","Фарионов А. А."));
         student1.setSubjectMark(1, 90);
         student1.setSubjectMark(2, 85);
-        student1.setSubjectMark(3, 64);
+        student1.setSubjectMark(3, 22);
         student1.setSubjectMark(4, 79);
         student1.setSubjectMark(5, 87);
 
@@ -52,7 +52,7 @@ public class Main {
         student3.addSubject(new Subject("Информатика","Фарионов А. А."));
         student3.setSubjectMark(1, 68);
         student3.setSubjectMark(2, 59);
-        student3.setSubjectMark(3, 64);
+        student3.setSubjectMark(3, 32);
         student3.setSubjectMark(4, 70);
         student3.setSubjectMark(5, 83);
 
@@ -70,8 +70,9 @@ public class Main {
 
         students.getDStudents();
 
-        students.removeIfD();
+        //students.removeIfD();
 
-        students.getInfo();
+        //students.getInfo();
+        students.searchSubjectMoreD();
     }
 }
