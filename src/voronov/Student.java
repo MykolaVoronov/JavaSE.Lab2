@@ -1,5 +1,6 @@
 package voronov;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 

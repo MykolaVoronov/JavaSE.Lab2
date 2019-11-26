@@ -1,5 +1,7 @@
 package voronov;
 
+import java.io.Serializable;
+
 public class Subject
 {
     private  String name;

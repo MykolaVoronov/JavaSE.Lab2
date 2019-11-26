@@ -1,11 +1,12 @@
 package voronov;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
 
-        Student student = new Student("Назаров Н. Г.", "ИКС","4","12345");
+       Student student = new Student("Назаров Н. Г.", "ИКС","4","12345");
         Student student1 = new Student("Субботин Ю. В.", "ИКС","4","12132");
         Student student2 = new Student("Сивин М. Б.", "ИКС","3","1234241");
         Student student3 = new Student("Чернов Р. С.", "ИКС","4","1241242");
@@ -74,5 +75,10 @@ public class Main {
 
         //students.getInfo();
         students.searchSubjectMoreD();
+
+        Serialization serialization = new Serialization();
+        serialization.SaveToJSON(students, "SavedStudents");
+       // Students students = serialization.ReadFromJSON("SavedStudents");
+       // students.getInfo();
     }
 }

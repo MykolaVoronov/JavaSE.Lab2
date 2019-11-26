@@ -1,5 +1,6 @@
 package voronov;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Students {
@@ -123,6 +124,7 @@ public class Students {
     public void getInfo() {
         if (!isStudentsEmpty())
         {
+            System.out.println("----------------------------------------------------------------------------------------------------"); //x100 "-"
             for (int i = 0; i < students.size(); i++) {
                 try {
                     System.out.print("(" + (i+1) + ") ");
